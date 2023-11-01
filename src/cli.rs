@@ -10,6 +10,7 @@ pub struct Args {
 #[derive(FromArgs)]
 #[argh(subcommand)]
 pub enum Command {
+    FlashCommand(FlashCommandArgs),
     UploadCommand(UploadCommandArgs),
 }
 
@@ -42,4 +43,19 @@ pub struct UploadCommandGallery {
 pub struct UploadCommandLocal {
     #[argh(positional)]
     pub file_name: String,
+}
+
+#[derive(FromArgs)]
+#[argh(subcommand, name = "flash")]
+///
+pub struct FlashCommandArgs {
+    #[argh(switch)]
+    /// a
+    pub latest: bool,
+    #[argh(positional)]
+    /// a
+    pub dev: String,
+    #[argh(positional)]
+    /// a
+    pub local: Option<String>,
 }
